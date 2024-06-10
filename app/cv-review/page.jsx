@@ -4,7 +4,10 @@ import { Document, Page, pdfjs } from "react-pdf";
 import "react-pdf/dist/esm/Page/AnnotationLayer.css";
 import "react-pdf/dist/esm/Page/TextLayer.css";
 
-pdfjs.GlobalWorkerOptions.workerSrc = "pdfjs-dist/build/pdf.worker.min.mjs";
+pdfjs.GlobalWorkerOptions.workerSrc =new URL(
+  'pdfjs-dist/build/pdf.worker.min.mjs',
+  import.meta.url
+).toString()
 
 const ReviewCv = () => {
   const [width, setWidth] = useState(1200);
@@ -12,11 +15,11 @@ const ReviewCv = () => {
   useEffect(() => {
     setWidth(window.innerWidth);
   }, []);
-
+  console.log(pdfjs.GlobalWorkerOptions.workerSrc )
   return (
     <div className="my-[100px] relative z-[20]">
       {load===0?<div className="flex justify-center text-white text-xl">
-        Loadding CV...
+        Loading CV...
       </div>:load===1&&<div className="flex justify-center text-white text-xl">
         Error when load CV. Try dowload my CV
       </div>}
