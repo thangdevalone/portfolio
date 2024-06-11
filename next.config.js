@@ -6,7 +6,6 @@ const nextConfig = {
                 canvas: './empty-module.ts',
             },
         },
-    },
-   
+    }
 };
 module.exports = nextConfig;
